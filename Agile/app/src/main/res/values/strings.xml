@@ -5,5 +5,10 @@
     <string name="action_settings">Settings</string>
     <string name="Login"/>
     <string name="mot_de_passe" />
-    <string name="Voeu" />
+    <string name="Voeux" />
+
+    <string-array name="souhait">
+        <item>Souhait</item>
+        <item>Delete</item>
+    </string-array>
 </resources>

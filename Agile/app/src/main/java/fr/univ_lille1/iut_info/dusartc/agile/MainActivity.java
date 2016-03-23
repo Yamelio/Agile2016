@@ -4,6 +4,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
+import android.widget.AdapterView;
+import android.widget.Spinner;
+import android.widget.ArrayAdapter;
+import android.widget.TextView;
+import android.view.View;
+
+import static android.widget.AdapterView.*;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -11,6 +19,25 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        /*final Spinner choix = (Spinner) findViewById(R.id.spinner);
+        ArrayAdapter adStudent = ArrayAdapter.createFromResource(this, R.array.souhait, android.R.layout.simple_spinner_item);
+        choix.setAdapter(adStudent);
+        choix.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                TextView statut = (TextView) findViewById(R.id.textView);
+                statut.setText(choix.getSelectedItem().toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                TextView eleve = (TextView) findViewById(R.id.textView);
+                eleve.setText("");
+
+            }
+        });
+        */
     }
 
     @Override
