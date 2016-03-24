@@ -8,7 +8,6 @@
     <TextView
         android:layout_width="110dp"
         android:layout_height="37dp"
-        android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Post IUT"
         android:layout_gravity="center_horizontal|top"
         android:id="@+id/postIUT"
@@ -43,7 +42,7 @@
         android:layout_height="wrap_content"
         android:text="Connection"
         android:id="@+id/buttonConnection"
-        android:layout_centerVertical="true"
+        android:layout_alignTop="@+id/buttonOublié"
         android:layout_alignStart="@+id/mdp" />
 
     <Button
@@ -51,11 +50,11 @@
         android:layout_height="wrap_content"
         android:text="ID oublié"
         android:id="@+id/buttonOublié"
-        android:layout_centerVertical="true"
-        android:layout_alignEnd="@+id/mdp" />
+        android:layout_below="@+id/mdp"
+        android:layout_alignEnd="@+id/mdp"
+        android:layout_marginTop="70dp" />
 
     <Button
-        style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Informations"
