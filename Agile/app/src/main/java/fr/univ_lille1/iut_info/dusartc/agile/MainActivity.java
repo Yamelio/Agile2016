@@ -1,4 +1,4 @@
-package fr.univ_lille1.iut_info.dusartc.agile;
+/*package fr.univ_lille1.iut_info.dusartc.agile;
 
 //import android.support.v7.app.AppCompatActivity;
 import android.app.Activity;
@@ -19,8 +19,8 @@ import  android.content.Intent;
 import static android.widget.AdapterView.*;
 
 public class MainActivity extends Activity {
-    final String EXTRA_LOGIN = "user_login";
-    final String EXTRA_PASSWORD = "user_password";
+    //final String EXTRA_LOGIN = "user_login";
+    //final String EXTRA_PASSWORD = "user_password";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +32,7 @@ public class MainActivity extends Activity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, LoginDisplayActivity.class);
+                Intent intent = new Intent(MainActivity.this, AjoutVoeu.class);
                 //intent.putExtra(EXTRA_LOGIN, login.getText().toString());
                 //intent.putExtra(EXTRA_PASSWORD, pass.getText().toString());
                 startActivity(intent);
@@ -62,4 +62,4 @@ public class MainActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
-}
+*/

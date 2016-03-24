@@ -7,6 +7,8 @@
     <string name="mot_de_passe" />
     <string name="Voeux" />
     <string name="Formation" />
+    <string name="mail" />
+    <string name="logs" />
 
     <string-array name="souhait">
         <item>Souhait</item>

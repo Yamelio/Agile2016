@@ -7,8 +7,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="logs"
-        android:id="@+id/textView"
+        android:text="@string/logs"
+        android:id="@+id/Logs"
         android:layout_alignParentTop="true"
         android:layout_alignBottom="@+id/auRevoir"
         android:layout_alignParentStart="true" />
