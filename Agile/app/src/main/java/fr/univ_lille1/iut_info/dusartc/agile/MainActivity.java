@@ -25,35 +25,16 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        /*final Spinner choix = (Spinner) findViewById(R.id.spinner);
-        ArrayAdapter adStudent = ArrayAdapter.createFromResource(this, R.array.souhait, android.R.layout.simple_spinner_item);
-        choix.setAdapter(adStudent);
-        choix.setOnItemSelectedListener(new OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                TextView statut = (TextView) findViewById(R.id.textView);
-                statut.setText(choix.getSelectedItem().toString());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                TextView eleve = (TextView) findViewById(R.id.textView);
-                eleve.setText("");
-
-            }
-        });
-        */
-        final EditText login = (EditText) findViewById(R.id.login);
-        final EditText pass = (EditText) findViewById(R.id.mdp);
+        //final EditText login = (EditText) findViewById(R.id.login);
+        //final EditText pass = (EditText) findViewById(R.id.mdp);
         final Button loginButton = (Button) findViewById(R.id.buttonConnection);
         loginButton.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, LoginDisplayActivity.class);
-                intent.putExtra(EXTRA_LOGIN, login.getText().toString());
-                intent.putExtra(EXTRA_PASSWORD, pass.getText().toString());
+                //intent.putExtra(EXTRA_LOGIN, login.getText().toString());
+                //intent.putExtra(EXTRA_PASSWORD, pass.getText().toString());
                 startActivity(intent);
             }
         });
