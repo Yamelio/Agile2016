@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.AdapterView;
 import android.widget.Spinner;
+import android.widget.Button;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.view.View;
@@ -38,7 +39,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         */
+        final Button loginButton = (Button) findViewById(R.id.connect);
+        loginButton.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, LoginDisplayActivity.class);
+                startActivity(intent);
+            }
+        });
     }
+
+}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
