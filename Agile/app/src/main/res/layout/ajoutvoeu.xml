@@ -35,28 +35,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/textVoeu"
         android:layout_below="@+id/Voeux"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="34dp"
         android:hint="Voeu" />
-
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinnerPoursuite"
-        android:paddingTop="15dp"
-        android:layout_below="@+id/textVoeu"
-        android:layout_alignParentStart="true" />
-
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinnerEcole"
-        android:layout_marginTop="29dp"
-        android:layout_below="@+id/spinnerPoursuite"
-        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -66,4 +49,23 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="59dp" />
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextPoursuite"
+        android:hint="Formation"
+        android:text="@string/Formation"
+        android:layout_below="@+id/textVoeu"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="36dp" />
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText"
+        android:hint="Etablissement"
+        android:layout_marginTop="63dp"
+        android:layout_below="@+id/editTextPoursuite"
+        android:layout_alignStart="@+id/editTextPoursuite" />
 </RelativeLayout>

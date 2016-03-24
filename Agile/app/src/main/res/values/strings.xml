@@ -6,6 +6,7 @@
     <string name="Login"/>
     <string name="mot_de_passe" />
     <string name="Voeux" />
+    <string name="Formation" />
 
     <string-array name="souhait">
         <item>Souhait</item>
