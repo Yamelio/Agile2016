@@ -55,14 +55,26 @@ public class AjoutVoeuActivity extends AppCompatActivity {
             parsed = formation.getText().toString().split(" ");
             Formation formation1 = new Formation(parsed[0], parsed[1]);
             int order1 = Integer.parseInt(order.getText().toString());
-            listvoeux.add(order1, new Voeu(etablissement1, formation1));
+            if (order1 < 1)
+                order1 = 1;
+            for(int i = order1 - 1; i < listvoeux.size(); i++){
+                Voeu tmp = listvoeux.get(i);
+                tmp.setOrder(i+2);
+            }
+            if (order1 > listvoeux.size()){
+                listvoeux.add(new Voeu(etablissement1, formation1, listvoeux.size() + 1));
+            } else {
+                listvoeux.add(order1, new Voeu(etablissement1, formation1, order1));
+            }
         } else {
             int order1 = Integer.parseInt(order.getText().toString());
             if(listvoeux.size() > 1){
-                Voeu moved = listvoeux.get(order1-1);
+                Voeu moved = listvoeux.get(order1 - 1);
                 moved.setOrder(voeu.getOrder());
             }
+            listvoeux.remove(this.voeu);
             voeu.setOrder(order1);
+            listvoeux.add(voeu);
         }
 
         Collections.sort(listvoeux, new Comparator<Voeu>() {

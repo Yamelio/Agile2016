@@ -27,4 +27,13 @@ public class Etablissement implements Serializable {
     public String toString() {
         return "ville: "+ville+", nom: "+nom;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Etablissement){
+            return ville.equals(((Etablissement) o).getVille()) &&
+                    nom.equals(((Etablissement) o).getNom());
+        }
+        return false;
+    }
 }

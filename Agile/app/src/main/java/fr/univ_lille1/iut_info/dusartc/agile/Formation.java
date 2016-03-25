@@ -27,4 +27,13 @@ public class Formation implements Serializable {
     public String toString() {
         return "domaine: "+domaine+", diplome: "+diplome;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Formation){
+            return domaine.equals(((Formation) o).getDomaine()) &&
+                    diplome.equals(((Formation) o).getDiplome());
+        }
+        return false;
+    }
 }

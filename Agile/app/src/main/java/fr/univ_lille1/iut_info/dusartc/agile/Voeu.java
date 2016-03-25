@@ -24,6 +24,11 @@ public class Voeu implements Serializable, Comparable<Voeu> {
         this.etablissement = etablissement;
     }
 
+    public Voeu(Etablissement etablissement, Formation formation, int order){
+        this(etablissement, formation);
+        this.order = order;
+    }
+
     public Etablissement getEtablissement() {
         return etablissement;
     }
@@ -60,5 +65,16 @@ public class Voeu implements Serializable, Comparable<Voeu> {
         if (order > another.order)
             return 1;
         return 0;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(o instanceof Voeu){
+            boolean ans = formation.equals(((Voeu) o).getFormation()) &&
+                    etablissement.equals(((Voeu) o).getEtablissement()) &&
+                    order == ((Voeu) o).getOrder();
+            return ans;
+        }
+        return false;
     }
 }
