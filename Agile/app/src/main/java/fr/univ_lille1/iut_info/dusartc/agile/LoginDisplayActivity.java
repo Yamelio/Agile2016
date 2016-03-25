@@ -25,7 +25,7 @@ public class LoginDisplayActivity extends Activity {
         final EditText pass = (EditText) findViewById(R.id.mdp);
         //final Button loginButton = (Button) findViewById(R.id.buttonConnection);
         final Button loginButton = (Button) findViewById(R.id.buttonConnection);
-        loginButton.setOnClickListener(new OnClickListener() {
+        /*loginButton.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -33,7 +33,7 @@ public class LoginDisplayActivity extends Activity {
               //  intent.putExtra(EXTRA_LOGIN, login.getText().toString());
                 startActivity(intent);
             }
-        });
+        });*/
 
 
     }

@@ -1,55 +1,52 @@
 package fr.univ_lille1.iut_info.dusartc.agile;
 
-import android.app.Activity;
-import android.app.ListActivity;
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
-/**
- * Created by dusartc on 24/03/16.
- */
-public class ListeVoeuxActivity extends ListActivity {
+public class ListeVoeuxActivity extends AppCompatActivity {
 
-    private int count=0;
-    private ArrayList<String> list;
-    private ArrayAdapter<String> arrayAdapter;
+    private ArrayList<Voeu> listeVoeux;
+    private ArrayAdapter<Voeu> adapteur;
 
     @Override
-    protected void onCreate(Bundle savedInstance){
-        super.onCreate(savedInstance);
-        setContentView(R.layout.affichage);
-
-        //ListView listView = (ListView) findViewById(R.id.listView);
-
-        /*Voeu[] listeVoeux;
-        try {
-            listeVoeux = (Voeu[]) savedInstance.get("listeVoeux");
-        } catch (Exception e){
-            listeVoeux = new Voeu[]{new Voeu("oui","oui","oui","non")};
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.liste_voeux_display);
+        listeVoeux = (ArrayList<Voeu>) getIntent().getSerializableExtra("listeVoeux");
+        if (listeVoeux == null) {
+            listeVoeux = new ArrayList<>();
+            listeVoeux.add(new Voeu("DUT", "Informatique", "Lille", "Lille 1", 1));
+            listeVoeux.add(new Voeu("Licence", "Informatique", "Lille", "Lille 1", 2));
+        } else {
+            adapteur.notifyDataSetChanged();
         }
 
-        String[] subSpinnerString = new String[listeVoeux.length + 1];
-        subSpinnerString[subSpinnerString.length-1] = "delete";
-        for (int i=0; i<subSpinnerString.length; i++){
-            subSpinnerString[i] = i+"";
-        }*/
-        //listView.setAdapter(new ArrayAdapterPlusMieux(this, R.layout.listevoeux
-        //      , R.id.listView_voeux, subSpinnerString));
+        ListView listview = (ListView) findViewById(R.id.listView_liste_voeux);
+        adapteur = new ArrayAdapter<Voeu>(this, android.R.layout.simple_list_item_1, listeVoeux);
+        listview.setAdapter(adapteur);
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Voeu voeu = adapteur.getItem(position);
+                Intent intent = new Intent(ListeVoeuxActivity.this, AjoutVoeuActivity.class);
+                intent.putExtra("voeu", voeu);
+                intent.putExtra("listVoeux", listeVoeux);
+                startActivity(intent);
+            }
+        });
 
-        list = new ArrayList<String>();
-        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
-        setListAdapter(arrayAdapter);
     }
 
-    public void addItem(View view){
-        list.add("oui + "+count++);
-        arrayAdapter.notifyDataSetChanged();
+    public void addVoeu(View view){
+        Intent intent = new Intent(this, AjoutVoeuActivity.class);
+        intent.putExtra("listeVoeux", listeVoeux);
+        startActivity(intent);
     }
-
 }

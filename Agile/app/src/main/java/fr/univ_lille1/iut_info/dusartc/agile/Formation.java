@@ -1,9 +1,11 @@
 package fr.univ_lille1.iut_info.dusartc.agile;
 
+import java.io.Serializable;
+
 /**
  * Created by dusartc on 24/03/16.
  */
-public class Formation {
+public class Formation implements Serializable {
 
     private String domaine;
     private String diplome;
@@ -23,6 +25,6 @@ public class Formation {
 
     @Override
     public String toString() {
-        return "domaine: "+domaine+", diplome: "+diplome+"\n";
+        return "domaine: "+domaine+", diplome: "+diplome;
     }
 }

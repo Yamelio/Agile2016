@@ -1,9 +1,11 @@
 package fr.univ_lille1.iut_info.dusartc.agile;
 
+import java.io.Serializable;
+
 /**
  * Created by dusartc on 24/03/16.
  */
-public class Etablissement {
+public class Etablissement implements Serializable {
 
     private String ville;
     private String nom;
@@ -23,6 +25,6 @@ public class Etablissement {
 
     @Override
     public String toString() {
-        return "ville: "+ville+", nom: "+nom+"\n";
+        return "ville: "+ville+", nom: "+nom;
     }
 }
