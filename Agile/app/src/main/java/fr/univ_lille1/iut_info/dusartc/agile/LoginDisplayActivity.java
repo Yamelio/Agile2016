@@ -21,23 +21,26 @@ public class LoginDisplayActivity extends Activity {
     public void onCreate(Bundle savedInstanceStat){
         super.onCreate(savedInstanceStat);
         setContentView(R.layout.login_display);
-        final EditText login = (EditText) findViewById(R.id.login);
-        final EditText pass = (EditText) findViewById(R.id.mdp);
-        //final Button loginButton = (Button) findViewById(R.id.buttonConnection);
-        final Button loginButton = (Button) findViewById(R.id.buttonConnection);
-        /*loginButton.setOnClickListener(new OnClickListener() {
+        //final EditText login = (EditText) findViewById(R.id.login);
+        //final EditText pass = (EditText) findViewById(R.id.mdp);
+        Button loginButton = (Button) findViewById(R.id.buttonConnection);
+        loginButton.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginDisplayActivity.this, AjoutVoeu.class);
-              //  intent.putExtra(EXTRA_LOGIN, login.getText().toString());
-                startActivity(intent);
+               goToListeVoeux();
             }
-        });*/
+        });
 
 
     }
 
+    public void goToListeVoeux(){
+        //Intent intent = new Intent(LoginDisplayActivity.this, ListeVoeuxActivity.class);
+        Intent intent = new Intent(LoginDisplayActivity.this, AjoutVoeuActivity.class);
 
+        //intent.putExtra(EXTRA_LOGIN, login.getText().toString());
+        startActivity(intent);
+    }
 
 }
