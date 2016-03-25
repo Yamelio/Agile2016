@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -25,7 +26,7 @@ public class AjoutVoeuActivity extends AppCompatActivity {
         setContentView(R.layout.ajoutvoeu);
 
         voeu = (Voeu) getIntent().getSerializableExtra("voeu");
-        listvoeux = (ArrayList) getIntent().getSerializableExtra("listVoeux");
+        recupListeVoeux();
 
         if (voeu != null) {
             EditText etablissement = (EditText) findViewById(R.id.editTextEtablissement);
@@ -92,7 +93,15 @@ public class AjoutVoeuActivity extends AppCompatActivity {
 
     private void goToListeVoeux(){
         Intent intent = new Intent(this, ListeVoeuxActivity.class);
-        intent.putExtra("listeVoeux", listvoeux);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("listVoeux", (Serializable) listvoeux);
+        intent.putExtra("bundle", bundle);
         startActivity(intent);
+    }
+
+    private void recupListeVoeux(){
+        Intent intent = getIntent();
+        Bundle bundle = intent.getBundleExtra("bundle");
+        listvoeux = (ArrayList<Voeu>) bundle.getSerializable("listVoeux");
     }
 }

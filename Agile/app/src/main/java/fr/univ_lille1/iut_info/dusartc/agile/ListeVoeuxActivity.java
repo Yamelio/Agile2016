@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class ListeVoeuxActivity extends AppCompatActivity {
@@ -19,14 +20,7 @@ public class ListeVoeuxActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.liste_voeux_display);
-        listeVoeux = (ArrayList<Voeu>) getIntent().getSerializableExtra("listeVoeux");
-        if (listeVoeux == null) {
-            listeVoeux = new ArrayList<>();
-            listeVoeux.add(new Voeu("DUT", "Informatique", "Lille", "Lille 1", 1));
-            listeVoeux.add(new Voeu("Licence", "Informatique", "Lille", "Lille 1", 2));
-        } else {
-            adapteur.notifyDataSetChanged();
-        }
+        recupListeVoeux();
 
         ListView listview = (ListView) findViewById(R.id.listView_liste_voeux);
         adapteur = new ArrayAdapter<Voeu>(this, android.R.layout.simple_list_item_1, listeVoeux);
@@ -35,18 +29,41 @@ public class ListeVoeuxActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Voeu voeu = adapteur.getItem(position);
-                Intent intent = new Intent(ListeVoeuxActivity.this, AjoutVoeuActivity.class);
+                Intent intent = changeActivity();
                 intent.putExtra("voeu", voeu);
-                intent.putExtra("listVoeux", listeVoeux);
                 startActivity(intent);
             }
         });
 
     }
 
-    public void addVoeu(View view){
+    private void recupListeVoeux(){
+        Intent intent = getIntent();
+        Bundle bundle = intent.getBundleExtra("bundle");
+        try {
+            listeVoeux = (ArrayList<Voeu>) bundle.getSerializable("listVoeux");
+        } catch (Exception e){
+
+        }
+        if (listeVoeux == null) {
+            listeVoeux = new ArrayList<>();
+            listeVoeux.add(new Voeu("DUT", "Informatique", "Lille", "Lille 1", 1));
+            listeVoeux.add(new Voeu("Licence", "Informatique", "Lille", "Lille 1", 2));
+        } else {
+            //adapteur.notifyDataSetChanged();
+        }
+    }
+
+    private Intent changeActivity(){
         Intent intent = new Intent(this, AjoutVoeuActivity.class);
-        intent.putExtra("listeVoeux", listeVoeux);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("listVoeux", (Serializable) listeVoeux);
+        intent.putExtra("bundle", bundle);
+        return intent;
+    }
+
+    public void addVoeu(View view){
+        Intent intent = changeActivity();
         startActivity(intent);
     }
 }
