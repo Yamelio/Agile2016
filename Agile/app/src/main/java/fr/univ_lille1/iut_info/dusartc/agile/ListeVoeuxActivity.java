@@ -8,6 +8,17 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.UnknownHostException;
@@ -17,6 +28,9 @@ public class ListeVoeuxActivity extends AppCompatActivity {
 
     private ArrayList<Voeu> listeVoeux;
     private ArrayAdapter<Voeu> adapteur;
+    private String login;
+    private RequestQueue queue;
+    private String server = "http://172.18.48.149:8080/micheline/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,19 +51,6 @@ public class ListeVoeuxActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        HokutoNoSocket kenshiro = new HokutoNoSocket("172.18.48.149", 8080);
-        kenshiro.execute();
-        String machin = null;
-        try {
-            machin = kenshiro.doGet("voeux","/aaaa.aaaa");
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-            System.out.print("host excetqsdgn");
-        } catch (IOException e1) {
-            System.out.print("IO");
-        }
-        System.out.print("\n\n\n\nqsdfqsdsqdsqdf" + machin + "\n\n\n\nsdqhdsqdsqqdkjl");
     }
 
     private void recupListeVoeux(){
@@ -62,10 +63,42 @@ public class ListeVoeuxActivity extends AppCompatActivity {
         }
         if (listeVoeux == null) {
             listeVoeux = new ArrayList<>();
-            listeVoeux.add(new Voeu("DUT", "Informatique", "Lille", "Lille 1", 1));
-            listeVoeux.add(new Voeu("Licence", "Informatique", "Lille", "Lille 1", 2));
-        } else {
-            //adapteur.notifyDataSetChanged();
+            //listeVoeux.add(new Voeu("DUT", "Informatique", "Lille", "Lille 1", 1));
+            //listeVoeux.add(new Voeu("Licence", "Informatique", "Lille", "Lille 1", 2));
+            login = "aaaa.aaaa";
+            queue = Volley.newRequestQueue(this);
+            StringRequest request = new StringRequest(Request.Method.GET, server + "voeux/" + login,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String json) {
+                            try {
+                                JSONArray array = new JSONArray(json);
+                                for (int i = 0; i < array.length(); i++){
+                                    JSONObject current = array.getJSONObject(i);
+                                    JSONObject information = current.getJSONObject("formaEtabl");
+
+                                    String ville = information.getString("ville");
+                                    String domaine = information.getString("domaine");
+                                    String diplome = information.getString("diplome");
+                                    String nom = information.getString("nom");
+
+                                    Formation formation = new Formation(diplome, domaine);
+                                    Etablissement etablissement = new Etablissement(ville, nom);
+                                    Voeu voeu = new Voeu(etablissement, formation, listeVoeux.size());
+                                    listeVoeux.add(voeu);
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError volleyError) {
+                            showError(volleyError);
+                        }
+            });
+            queue.add(request);
         }
     }
 
@@ -80,5 +113,9 @@ public class ListeVoeuxActivity extends AppCompatActivity {
     public void addVoeu(View view){
         Intent intent = changeActivity();
         startActivity(intent);
+    }
+
+    public void showError(VolleyError error){
+        System.out.print("non");
     }
 }
