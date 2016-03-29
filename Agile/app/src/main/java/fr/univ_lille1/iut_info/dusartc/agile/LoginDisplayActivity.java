@@ -11,10 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import  android.content.Intent;
 
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 

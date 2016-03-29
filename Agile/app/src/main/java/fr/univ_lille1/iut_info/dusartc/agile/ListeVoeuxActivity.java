@@ -8,7 +8,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 public class ListeVoeuxActivity extends AppCompatActivity {
@@ -19,6 +21,7 @@ public class ListeVoeuxActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.liste_voeux_display);
         recupListeVoeux();
 
@@ -35,6 +38,18 @@ public class ListeVoeuxActivity extends AppCompatActivity {
             }
         });
 
+        HokutoNoSocket kenshiro = new HokutoNoSocket("172.18.48.149", 8080);
+        kenshiro.execute();
+        String machin = null;
+        try {
+            machin = kenshiro.doGet("voeux","/aaaa.aaaa");
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            System.out.print("host excetqsdgn");
+        } catch (IOException e1) {
+            System.out.print("IO");
+        }
+        System.out.print("\n\n\n\nqsdfqsdsqdsqdf" + machin + "\n\n\n\nsdqhdsqdsqqdkjl");
     }
 
     private void recupListeVoeux(){
